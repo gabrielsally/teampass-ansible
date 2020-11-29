@@ -1,5 +1,5 @@
 [teampass_app]
-192.168.217.91
+#Insira o IP do servidor de aplicacao
 
 [teampass_db]
-192.168.217.92
+#Insira o IP do servidor de banco de dados

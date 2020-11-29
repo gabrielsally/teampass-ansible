@@ -1,0 +1,9 @@
+---
+# tasks file for server
+
+  - name: Atualiza o cache apt de nosso servidor
+    apt: update_cache=yes cache_valid_time=3600
+  - name: Instala os pacotes necessarios
+    apt:
+      name: ['php', 'php7.3-curl', 'php7.3-mysql', 'mcrypt', 'php7.3-mbstring', 'php7.3-bcmath', 'php7.3-gd', 
+'php7.3-xml']

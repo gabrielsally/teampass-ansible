@@ -1,0 +1,14 @@
+---
+  - hosts: teampass_app
+    remote_user: grezende
+    become: yes
+    roles:
+    - server
+    - php
+    - teampass
+  
+  - hosts: teampass_db
+    remote_user: grezende
+    become: yes
+    roles:
+    - mysql

@@ -1,0 +1,9 @@
+---
+# defaults file for mysql
+
+  # nome do banco de dados da aplicacao
+  tp_mysql_db: teampass
+  # login a ser criado para a aplicacao
+  tp_mysql_user: teampass_admin
+  # senha a ser atribuida para o login da aplicacao
+  tp_mysql_password: P@ssword#2020

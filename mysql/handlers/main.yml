@@ -1,0 +1,7 @@
+---
+# handlers file for mysql
+
+ - name: reinicia MariaDB
+   service:
+    name=mysql
+    state=restarted

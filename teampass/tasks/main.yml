@@ -1,0 +1,24 @@
+---
+# tasks file for teampass
+
+  - name: Baixa do TeamPass 3.0.0.5
+    get_url:
+      url=https://github.com/nilsteampassnet/TeamPass/archive/3.0.0.5.tar.gz
+      dest=/tmp/TeamPass-3.0.0.5.tar.gz
+      validate_certs=no
+
+  - name: Descompacta o TeamPass
+    unarchive:
+      src: /tmp/TeamPass-3.0.0.5.tar.gz
+      dest: /var/www/html
+      remote_src: yes
+      creates: /var/www/html/TeamPass-3.0.0.5
+
+  - name: Modifica permissao na pasta TeamPass
+    file:
+      path: /var/www/html/TeamPass-3.0.0.5
+      owner: grezende
+      group: www-data
+      mode: "0777"
+      recurse: yes
+

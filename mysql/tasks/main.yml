@@ -1,0 +1,33 @@
+---
+# tasks file for mysql
+
+
+  - name: Instala Banco de dados e Python para mysqldb
+    apt:
+      name: ['mariadb-server', 'python-mysqldb']
+
+  - name: Autoriza conexao remota
+    lineinfile:
+      dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+      state: present
+      backup: yes
+      backrefs: yes
+      regexp: "bind-address            = 127.0.0.1"
+      line: "bind-address            = 0.0.0.0"
+    notify:
+    - reinicia MariaDB
+
+  - name: Cria o banco de dados para o TeamPass
+    mysql_db: name={{ tp_mysql_db }} state=present
+   
+  - name: Cria um usuario de banco para o TeamPass
+    mysql_user:
+      name={{ tp_mysql_user }}
+      password={{ tp_mysql_password }}
+      priv=*.*:ALL,GRANT
+
+  - name: Mysql Ajuste permissao para logon remoto
+    shell: mysql -u root -pP@ssword --execute "GRANT ALL ON teampass.* to teampass_admin@192.168.217.91 IDENTIFIED BY 'P@ssword#2020' WITH GRANT OPTION;"
+
+  - name: Mysql Flush Privileges
+    shell: mysql -u root -pP@ssword --execute "FLUSH PRIVILEGES;"
